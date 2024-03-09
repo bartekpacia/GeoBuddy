@@ -1,0 +1,35 @@
+{
+  "configurations" : [
+    {
+      "id" : "61C42788-C319-44EF-88DE-49CC42795C07",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:GeoBuddy.xcodeproj",
+      "identifier" : "980E1CE02B9C7BC6008E0FF1",
+      "name" : "GeoBuddy"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:GeoBuddy.xcodeproj",
+        "identifier" : "980E1CF02B9C7BC8008E0FF1",
+        "name" : "GeoBuddyTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:GeoBuddy.xcodeproj",
+        "identifier" : "980E1CFA2B9C7BC8008E0FF1",
+        "name" : "GeoBuddyUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
