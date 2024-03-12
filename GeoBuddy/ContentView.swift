@@ -9,7 +9,6 @@ struct ContentView: View {
       Image(systemName: "globe")
         .imageScale(.large)
         .foregroundStyle(.tint)
-      Text("Hello, world!")
 
       Text("Degrees Minutes Seconds (D° M' S\")")
         .frame(maxWidth: .infinity, alignment: .leading)
