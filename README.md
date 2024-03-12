@@ -12,4 +12,4 @@ formats:
 ### Authors
 
 - Bartek Pacia (@bartekpacia)
-- Piotr Karolak (@P3R3R3)
+- Piotr Karolak (@P3T3R3)
