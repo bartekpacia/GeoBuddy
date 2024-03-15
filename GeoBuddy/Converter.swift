@@ -26,6 +26,46 @@ enum GeoCoordinate: Equatable {
       return .decimalDegrees
     }
   }
+  var degrees: Float {
+      switch self {
+      case .dms(let degrees, _, _):
+          return Float(degrees)
+      case .dm(let degrees, _):
+          return Float(degrees)
+      case .dd(let decimalDegrees):
+          return decimalDegrees
+      }
+  }
+  var minutes: Float {
+      switch self {
+      case .dms(_, let minutes, _):
+          return Float(abs(minutes))
+      case .dm(_, let minutes):
+          return abs(minutes)
+      case .dd(_):
+          return 0
+      }
+  }
+  var seconds: Float {
+      switch self {
+      case .dms(_, _, let seconds):
+          return abs(seconds)
+      case .dm(_, _):
+          return 0
+      case .dd(_):
+          return 0
+      }
+  }
+  var toString: String{
+    switch self {
+    case .dms(_, _, _):
+      return "\(Int(degrees))° \(Int(minutes))' \(seconds.formatted(.number.precision(.fractionLength(0...2))))"
+    case .dm(_, _):
+        return "\(Int(degrees))° \(minutes.formatted(.number.precision(.fractionLength(0...4))))'"
+    case .dd(_):
+        return ""
+    }
+  }
 }
 
 /// Converts between various geographical coordinates formats.
