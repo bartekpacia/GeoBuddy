@@ -20,6 +20,13 @@ struct ResultView: View{
       Text(dm.toString)
         .frame(maxWidth: .infinity, alignment: .leading)
     }
+    if let dd = dd
+    {
+      Text("D°")
+        .frame(maxWidth: .infinity, alignment: .leading)
+      Text(dd.toString)
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
     
   }
 }
@@ -34,49 +41,93 @@ struct FromDDView: View {
   }
 }
 
+struct InputView: View {
+  @Binding var lat: DMSTuple
+  @Binding var lng: DMSTuple
+  @Binding var fromType: GeoCoordinateFormat
+  var body: some View {
+    VStack {
+      Text("Latitude:")
+        .font(.headline)
+        .frame(maxWidth: .infinity, alignment: .leading)
+      HStack{
+        Text("D°")
+        TextField("°", value: $lat.degrees , format: .number)
+          .textFieldStyle(.roundedBorder)
+      }
+      .padding(.bottom, 16.0)
+      Text("Longitude:")
+        .font(.headline)
+        .frame(maxWidth: .infinity, alignment: .leading)
+      HStack{
+        Text("D°")
+        TextField("°", value: $lng.degrees , format: .number)
+          .textFieldStyle(.roundedBorder)
+      }
+
+    }
+  }
+}
+
+struct CordTypeOutputView: View {
+  var title: String
+  @Binding var cord: DMSTuple
+  @Binding var fromType: GeoCoordinateFormat
+  var body: some View {
+    VStack{
+      if let deg = cord.degrees
+      {
+          Text("\(title):")
+            .font(.headline)
+            .frame(maxWidth: .infinity, alignment: .leading)
+          FromDDView(cord: deg)
+
+      }
+
+
+    }
+  }
+}
+
+struct OutputView: View {
+  @Binding var lat: DMSTuple
+  @Binding var lng: DMSTuple
+  @Binding var fromType: GeoCoordinateFormat
+  var body: some View {
+    HStack{
+      CordTypeOutputView(title: "Latitude", cord: $lat, fromType: $fromType)
+      CordTypeOutputView(title: "Longitude", cord: $lng, fromType: $fromType)
+    }
+  }
+}
+
+
 struct ContentView: View {
-  @State var lat: Float? = nil
-  @State var lng: Float? = nil
-  
+  @State var lat: DMSTuple = DMSTuple()
+  @State var lng: DMSTuple = DMSTuple()
+  @State private var fromType: GeoCoordinateFormat = GeoCoordinateFormat.decimalDegrees
   var body: some View {
     VStack {
       Image(systemName: "globe")
+        .padding(.bottom, 16.0)
         .imageScale(.large)
         .foregroundStyle(.tint)
+
+
+        Picker(selection: $fromType, label: /*@START_MENU_TOKEN@*/Text("Picker")/*@END_MENU_TOKEN@*/) {
+          Text("DD°").tag(GeoCoordinateFormat.decimalDegrees)
+        }          .frame(maxWidth: .infinity, alignment: .trailing).pickerStyle(.segmented)          .padding(.bottom, 28.0)
       
-      Text("From Decimal Degrees")
-        .frame(maxWidth: .infinity, alignment: .center)
-      HStack{      Text("D°")
-        TextField("Enter latitude", value: $lat, format: .number)
-        .textFieldStyle(.roundedBorder)}
-      HStack{      Text("D°")
-        TextField("Enter longitude", value: $lng, format: .number)
-          .textFieldStyle(.roundedBorder)
-      }
-      HStack{
-        if let lat = lat
-        {
-          
-          VStack{
-            Text("Lattitude:")
-              .font(.headline)
-              .frame(maxWidth: .infinity, alignment: .leading)
-            FromDDView(cord: lat)
-          }
-        }
-        if let lng = lng{
-          VStack{
-            Text("Longtitude:")
-              .font(.headline)
-              .frame(maxWidth: .infinity, alignment: .leading)
-            FromDDView(cord: lng)
-          }
-        }
-      }
-    }.padding()
+      
+      InputView(lat: $lat, lng: $lng, fromType: $fromType)
+
+      OutputView(lat: $lat, lng: $lng, fromType: $fromType)
+
+      .padding(.top, 18.0)
+    }.padding(28.0)
   }
 }
 
 #Preview {
-  ContentView(lat:13.563,lng:54.5643)
+  ContentView(lat:DMSTuple(degrees: 13.563) ,lng:DMSTuple(degrees: 54.5643))
 }
