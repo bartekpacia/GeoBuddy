@@ -1,5 +1,11 @@
 import Foundation
 
+struct DMSTuple{
+  var degrees: Float? = nil
+  var minutes: Float? = nil
+  var seconds: Float? = nil
+}
+
 enum GeoCoordinateFormat {
   case degreesMinutesSeconds
   case decimalMinutes
@@ -61,9 +67,9 @@ enum GeoCoordinate: Equatable {
     case .dms(_, _, _):
       return "\(Int(degrees))° \(Int(minutes))' \(seconds.formatted(.number.precision(.fractionLength(0...2))))"
     case .dm(_, _):
-        return "\(Int(degrees))° \(minutes.formatted(.number.precision(.fractionLength(0...4))))'"
+        return "\(Int(degrees))° \(minutes.formatted(.number.precision(.fractionLength(0...3))))'"
     case .dd(_):
-        return ""
+        return "\(degrees.formatted(.number.precision(.fractionLength(0...4))))"
     }
   }
 }
