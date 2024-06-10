@@ -1,5 +1,5 @@
 import SwiftUI
-
+import MapKit
 
 struct ResultView: View{
   var dms:GeoCoordinate? = nil
@@ -167,6 +167,50 @@ struct OutputView: View {
   }
 }
 
+struct PointView: View{
+    @State private var positionMap: MapCameraPosition = .automatic
+    var lat: Float
+    var lng: Float
+    var body: some View {
+        Map(position: $positionMap){
+            Marker("Point",coordinate: CLLocationCoordinate2D(latitude: CLLocationDegrees(lat), longitude: CLLocationDegrees(lng)))
+        }.onChange(of: lat){
+            positionMap = .automatic
+        }.onChange(of: lng ){
+            positionMap = .automatic
+        }.mapStyle(.hybrid);
+    }
+}
+
+struct MapView: View{
+    @Binding var lat: DMSTuple
+    @Binding var lng: DMSTuple
+    @Binding var fromType: GeoCoordinateFormat
+    var body: some View {
+        let converter = Converter()
+        switch fromType {
+        case .decimalDegrees:
+            if let latDeg = lat.degrees, let lngDeg = lng.degrees
+          {
+                PointView(lat: latDeg, lng: lngDeg)
+          }
+        case .decimalMinutes:
+            if let latDeg = lat.degrees, let latMin = lat.minutes,let lngDeg = lng.degrees, let lngMin = lng.minutes
+          {
+                let latDd = converter.convert(from: GeoCoordinate.dm(degrees: Int(latDeg),minutes: latMin), to: .decimalDegrees)
+                let lngDd = converter.convert(from: GeoCoordinate.dm(degrees: Int(lngDeg),minutes: lngMin), to: .decimalDegrees)
+                PointView(lat: latDd.degrees, lng: lngDd.degrees)
+          }
+        case .degreesMinutesSeconds:
+            if let latDeg = lat.degrees, let latMin = lat.minutes, let latSec = lat.seconds,let lngDeg = lng.degrees, let lngMin = lng.minutes, let lngSec = lng.seconds
+          {
+                let latDd = converter.convert(from: GeoCoordinate.dms(degrees: Int(latDeg),minutes:Int(latMin),seconds: latSec), to: .decimalDegrees)
+                let lngDd = converter.convert(from: GeoCoordinate.dms(degrees: Int(lngDeg),minutes:Int(lngMin),seconds: lngSec), to: .decimalDegrees)
+                PointView(lat: latDd.degrees, lng: lngDd.degrees)
+          }
+        }
+    }
+}
 
 struct ContentView: View {
   @State var lat: DMSTuple = DMSTuple()
@@ -190,8 +234,9 @@ struct ContentView: View {
       InputView(lat: $lat, lng: $lng, fromType: $fromType)
 
       OutputView(lat: $lat, lng: $lng, fromType: $fromType)
-
       .padding(.top, 18.0)
+      MapView(lat: $lat, lng: $lng, fromType: $fromType)
+        
     }.padding(28.0)
   }
 }
