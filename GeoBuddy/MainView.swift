@@ -10,7 +10,7 @@ struct MainView: View {
 
             SavedView()
                 .tabItem {
-                    Label("Order", systemImage: "square.and.pencil")
+                    Label("Saved", systemImage: "square.and.pencil")
                 }
         }
     }

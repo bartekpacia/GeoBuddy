@@ -280,7 +280,7 @@ struct TextInputSheet: View {
 
     var body: some View {
         VStack {
-            Text("Enter some text:")
+            Text("Enter coord name:")
                 .font(.headline)
                 .padding()
 
