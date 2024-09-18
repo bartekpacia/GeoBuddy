@@ -1,6 +1,10 @@
 import Foundation
 
-struct DMSTuple{
+func tuplesWithTypeToDD(lat: DMSTuple, lng: DMSTuple, format: GeoCoordinateFormat) {
+    
+}
+
+struct DMSTuple: Codable {
   var degrees: Float? = nil
   var minutes: Float? = nil
   var seconds: Float? = nil

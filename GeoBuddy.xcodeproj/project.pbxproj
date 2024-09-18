@@ -3,17 +3,21 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		980E1CE52B9C7BC6008E0FF1 /* GeoBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980E1CE42B9C7BC6008E0FF1 /* GeoBuddyApp.swift */; };
-		980E1CE72B9C7BC6008E0FF1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980E1CE62B9C7BC6008E0FF1 /* ContentView.swift */; };
+		980E1CE72B9C7BC6008E0FF1 /* ConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980E1CE62B9C7BC6008E0FF1 /* ConverterView.swift */; };
 		980E1CE92B9C7BC7008E0FF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 980E1CE82B9C7BC7008E0FF1 /* Assets.xcassets */; };
 		980E1CEC2B9C7BC7008E0FF1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 980E1CEB2B9C7BC7008E0FF1 /* Preview Assets.xcassets */; };
 		980E1CF62B9C7BC8008E0FF1 /* GeoBuddyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980E1CF52B9C7BC8008E0FF1 /* GeoBuddyTests.swift */; };
 		980E1D002B9C7BC8008E0FF1 /* GeoBuddyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980E1CFF2B9C7BC8008E0FF1 /* GeoBuddyUITests.swift */; };
 		980E1D0F2B9C8AA8008E0FF1 /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980E1D0E2B9C8AA8008E0FF1 /* Converter.swift */; };
+		98AFB5F52C9B6B25001A7BC3 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98AFB5F42C9B6B25001A7BC3 /* MainView.swift */; };
+		98AFB5F72C9B6BD7001A7BC3 /* SavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98AFB5F62C9B6BD4001A7BC3 /* SavedView.swift */; };
+		98AFB5FA2C9B6E9D001A7BC3 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98AFB5F92C9B6E9A001A7BC3 /* ModelData.swift */; };
+		98AFB5FC2C9B6FDB001A7BC3 /* CoordinateRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98AFB5FB2C9B6FD5001A7BC3 /* CoordinateRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +40,7 @@
 /* Begin PBXFileReference section */
 		980E1CE12B9C7BC6008E0FF1 /* GeoBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeoBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		980E1CE42B9C7BC6008E0FF1 /* GeoBuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoBuddyApp.swift; sourceTree = "<group>"; };
-		980E1CE62B9C7BC6008E0FF1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		980E1CE62B9C7BC6008E0FF1 /* ConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterView.swift; sourceTree = "<group>"; };
 		980E1CE82B9C7BC7008E0FF1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		980E1CEB2B9C7BC7008E0FF1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		980E1CF12B9C7BC8008E0FF1 /* GeoBuddyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeoBuddyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,7 +49,15 @@
 		980E1CFF2B9C7BC8008E0FF1 /* GeoBuddyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoBuddyUITests.swift; sourceTree = "<group>"; };
 		980E1D0E2B9C8AA8008E0FF1 /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		980E1D102B9CFA76008E0FF1 /* GeoBuddy.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = GeoBuddy.xctestplan; sourceTree = "<group>"; };
+		98AFB5F42C9B6B25001A7BC3 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		98AFB5F62C9B6BD4001A7BC3 /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedView.swift; sourceTree = "<group>"; };
+		98AFB5F92C9B6E9A001A7BC3 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
+		98AFB5FB2C9B6FD5001A7BC3 /* CoordinateRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		98AFB5FD2C9B701D001A7BC3 /* Resources */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Resources; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		980E1CDE2B9C7BC6008E0FF1 /* Frameworks */ = {
@@ -96,11 +108,16 @@
 		980E1CE32B9C7BC6008E0FF1 /* GeoBuddy */ = {
 			isa = PBXGroup;
 			children = (
+				98AFB5FD2C9B701D001A7BC3 /* Resources */,
+				98AFB5FB2C9B6FD5001A7BC3 /* CoordinateRow.swift */,
+				98AFB5F92C9B6E9A001A7BC3 /* ModelData.swift */,
 				980E1CE42B9C7BC6008E0FF1 /* GeoBuddyApp.swift */,
-				980E1CE62B9C7BC6008E0FF1 /* ContentView.swift */,
+				980E1CE62B9C7BC6008E0FF1 /* ConverterView.swift */,
+				98AFB5F42C9B6B25001A7BC3 /* MainView.swift */,
+				98AFB5F62C9B6BD4001A7BC3 /* SavedView.swift */,
+				980E1D0E2B9C8AA8008E0FF1 /* Converter.swift */,
 				980E1CE82B9C7BC7008E0FF1 /* Assets.xcassets */,
 				980E1CEA2B9C7BC7008E0FF1 /* Preview Content */,
-				980E1D0E2B9C8AA8008E0FF1 /* Converter.swift */,
 			);
 			path = GeoBuddy;
 			sourceTree = "<group>";
@@ -143,6 +160,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				98AFB5FD2C9B701D001A7BC3 /* Resources */,
 			);
 			name = GeoBuddy;
 			productName = GeoBuddy;
@@ -259,9 +279,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				980E1CE72B9C7BC6008E0FF1 /* ContentView.swift in Sources */,
+				98AFB5FC2C9B6FDB001A7BC3 /* CoordinateRow.swift in Sources */,
+				980E1CE72B9C7BC6008E0FF1 /* ConverterView.swift in Sources */,
+				98AFB5F72C9B6BD7001A7BC3 /* SavedView.swift in Sources */,
+				98AFB5F52C9B6B25001A7BC3 /* MainView.swift in Sources */,
 				980E1D0F2B9C8AA8008E0FF1 /* Converter.swift in Sources */,
 				980E1CE52B9C7BC6008E0FF1 /* GeoBuddyApp.swift in Sources */,
+				98AFB5FA2C9B6E9D001A7BC3 /* ModelData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

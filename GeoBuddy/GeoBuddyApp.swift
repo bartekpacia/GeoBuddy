@@ -2,9 +2,12 @@ import SwiftUI
 
 @main
 struct GeoBuddyApp: App {
-  var body: some Scene {
-    WindowGroup {
-      ContentView()
+    @StateObject private var modelData = ModelData()
+    
+    var body: some Scene {
+        WindowGroup {
+            MainView()
+                .environmentObject(modelData)
+        }
     }
-  }
 }

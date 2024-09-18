@@ -1,0 +1,18 @@
+[
+    {
+        "name": "Wydział RMS",
+        "isFavorite": true,
+        "coordinate": {
+            "lat": 50.29123,
+            "lng": 18.68000
+        }
+    },
+    {
+        "name": "Wydział AEI",
+        "isFavorite": true,
+        "coordinate": {
+            "lat": 50.28855,
+            "lng": 18.67798
+        }
+    }
+]
