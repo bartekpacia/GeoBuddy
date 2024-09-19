@@ -227,37 +227,17 @@ struct ConverterView: View {
                       TextInputSheet(
                         isShowingSheet: $isShowingSheet,
                         onSave: { placeName in
-//                            let currentCoordinate = GeoCoordinate.dms(
-//                                degrees: lat.degrees!,
-//                                minutes: lat.minutes!,
-//                                seconds: lat.seconds!
-//                            )
-//                            
-//                            let converter = Converter()
-//                            let latDD = converter.convert(
-//                                from: GeoCoordinate
-//                                    .dms(
-//                                        degrees: Int(lat.degrees),
-//                                        minutes: Int(lat.minutes),
-//                                        seconds: Int(lat.seconds)
-//                                    ),
-//                                to: .decimalDegrees
-//                            )
-//                            let lngDD = converter.convert(
-//                                from: GeoCoordinate
-//                                    .dms(
-//                                        degrees: lng.degrees,
-//                                        minutes: lng.minutes,
-//                                        seconds: lng.seconds
-//                                    ),
-//                                to: .decimalDegrees
-//                            )
+                            let (lat, lng) = tupleWithTypeToDD(
+                                lat: lat,
+                                lng: lng,
+                                format: fromType
+                            )
                             
                             modelData.savedCoordinates.append(
                                 SavedCoordinate(
                                     coordinate: LatLng(
-                                        lat: 2,
-                                        lng: 3
+                                        lat: lat,
+                                        lng: lng
                                     ),
                                     name: placeName,
                                     isFavorite: true

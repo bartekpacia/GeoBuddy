@@ -1,7 +1,36 @@
 import Foundation
 
-func tuplesWithTypeToDD(lat: DMSTuple, lng: DMSTuple, format: GeoCoordinateFormat) {
+func tupleWithTypeToDD(lat: DMSTuple, lng: DMSTuple, format: GeoCoordinateFormat) -> (Double, Double) {
+    func convertToDecimalDegrees(_ tuple: DMSTuple, format: GeoCoordinateFormat) -> Double {
+        switch format {
+        case .degreesMinutesSeconds:
+            // Convert from DMS (degrees, minutes, seconds) to Decimal Degrees
+            guard let degrees = tuple.degrees, let minutes = tuple.minutes, let seconds = tuple.seconds else {
+                return 0.0
+            }
+            return Double(degrees) + (Double(minutes) / 60.0) + (Double(seconds) / 3600.0)
+            
+        case .decimalMinutes:
+            // Convert from DM (degrees, minutes) to Decimal Degrees
+            guard let degrees = tuple.degrees, let minutes = tuple.minutes else {
+                return 0.0
+            }
+            return Double(degrees) + (Double(minutes) / 60.0)
+            
+        case .decimalDegrees:
+            // Already in Decimal Degrees
+            guard let degrees = tuple.degrees else {
+                return 0.0
+            }
+            return Double(degrees)
+        }
+    }
     
+    // Convert both latitude and longitude to decimal degrees
+    let latitudeDD = convertToDecimalDegrees(lat, format: format)
+    let longitudeDD = convertToDecimalDegrees(lng, format: format)
+    
+    return (latitudeDD, longitudeDD)
 }
 
 struct DMSTuple: Codable {
