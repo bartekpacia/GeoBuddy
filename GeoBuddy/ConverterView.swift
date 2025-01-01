@@ -67,6 +67,7 @@ struct InputView: View {
   @Binding var lat: DMSTuple
   @Binding var lng: DMSTuple
   @Binding var fromType: GeoCoordinateFormat
+    
   var body: some View {
     VStack {
       Text("Latitude:")
@@ -110,7 +111,6 @@ struct InputView: View {
              .textFieldStyle(.roundedBorder)
         }
       }
-
     }
   }
 }
@@ -168,10 +168,21 @@ struct OutputView: View {
 }
 
 
-struct ContentView: View {
+struct ConverterView: View {
+  @EnvironmentObject var modelData: ModelData
+  @State private var isShowingSheet = false
+  @State private var inputText: String = ""
   @State var lat: DMSTuple = DMSTuple()
   @State var lng: DMSTuple = DMSTuple()
   @State private var fromType: GeoCoordinateFormat = GeoCoordinateFormat.decimalDegrees
+    
+    // Action handler function
+    func buttonTapped() {
+        print("Button was tapped!")
+        
+        // You can add additional logic here, like navigation or updating state
+    }
+
   var body: some View {
     VStack {
       Image(systemName: "globe")
@@ -190,12 +201,90 @@ struct ContentView: View {
       InputView(lat: $lat, lng: $lng, fromType: $fromType)
 
       OutputView(lat: $lat, lng: $lng, fromType: $fromType)
+        
+        Spacer()
+        
+        Button(action: {
+            isShowingSheet = true
+        }) {
+                    HStack {
+                        Image(systemName: "star.fill") // Icon from SF Symbols
+                            .font(.title)
+                            .foregroundColor(.yellow)
+                        Text("Save location")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                    }
+                    .padding()
+                    .background(Color.blue)
+                    .cornerRadius(10)
+                }
 
       .padding(.top, 18.0)
     }.padding(28.0)
+          .sheet(isPresented: $isShowingSheet) {
+
+                      TextInputSheet(
+                        isShowingSheet: $isShowingSheet,
+                        onSave: { placeName in
+                            let (lat, lng) = tupleWithTypeToDD(
+                                lat: lat,
+                                lng: lng,
+                                format: fromType
+                            )
+                            
+                            modelData.savedCoordinates.append(
+                                SavedCoordinate(
+                                    coordinate: LatLng(
+                                        lat: lat,
+                                        lng: lng
+                                    ),
+                                    name: placeName,
+                                    isFavorite: true
+                                )
+                            )
+                        }
+                      )
+                  }
+                  .onChange(of: inputText) { newValue in
+                      print("User entered: \(newValue)")
+                  }
   }
 }
 
+struct TextInputSheet: View {
+    @Binding var isShowingSheet: Bool
+    @State private var tempText: String = ""
+    
+    var onSave: (String) -> ()
+
+    var body: some View {
+        VStack {
+            Text("Enter coord name:")
+                .font(.headline)
+                .padding()
+
+            TextField("Type something...", text: $tempText)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+
+            HStack {
+                Button("Cancel") {
+                    isShowingSheet = false
+                }
+                .padding()
+
+                Button("Save") {
+                    onSave(tempText)
+                    isShowingSheet = false
+                }
+                .padding()
+            }
+        }
+        .padding()
+    }
+}
+
 #Preview {
-  ContentView(lat:DMSTuple(degrees: 13.563) ,lng:DMSTuple(degrees: 54.5643))
+  ConverterView(lat:DMSTuple(degrees: 13.563) ,lng:DMSTuple(degrees: 54.5643))
 }
